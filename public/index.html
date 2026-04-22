@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Buat Kartu Pelajar</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      body {
+        font-family: Arial;
+        background-image: url("sekolah.jpeg");
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+      }
+
+      h2 {
+        color: white;
+      }
+
+      form {
+        background: white;
+        padding: 25px;
+        max-width: 420px;
+        width: 95%;
+        margin: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 12px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+
+      /* TEMPLATE */
+
+      .template-area {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 15px 0;
+      }
+
+      .template-area label {
+        cursor: pointer;
+      }
+
+      .template-area img {
+        width: 90px;
+        max-width: 100%;
+        border-radius: 6px;
+        border: 3px solid transparent;
+      }
+
+      .template-area input:checked + img {
+        border: 3px solid #007bff;
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        form {
+          padding: 18px;
+        }
+
+        .template-area img {
+          width: 70px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Buat Kartu Pelajar</h2>
+
+    <form action="/generate" method="POST" enctype="multipart/form-data">
+      <!-- =========================
+PILIH TEMPLATE
+========================= -->
+
+      <h3>Pilih Template</h3>
+
+      <div class="template-area">
+        <label>
+          <input
+            type="radio"
+            name="template"
+            value="kartu-template.png"
+            checked
+            hidden
+          />
+          <img src="/templates/kartu-template.png" />
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="template"
+            value="kartu-template2.png"
+            hidden
+          />
+          <img src="/templates/kartu-template2.png" />
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="template"
+            value="kartu-template3.png"
+            hidden
+          />
+          <img src="/templates/kartu-template3.png" />
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="template"
+            value="kartu-template4.png"
+            hidden
+          />
+          <img src="/templates/kartu-template4.png" />
+        </label>
+      </div>
+
+      <hr />
+
+      <!-- =========================
+DATA SEKOLAH
+========================= -->
+
+      <input type="text" name="sekolah" placeholder="Nama Sekolah" required />
+
+      <input type="text" name="alamat" placeholder="Alamat Sekolah" required />
+
+      <label>Logo Sekolah</label>
+      <input type="file" name="logo" required />
+
+      <hr />
+
+      <!-- =========================
+DATA SISWA
+========================= -->
+
+      <input type="text" name="nama" placeholder="Nama Siswa" required />
+
+      <input type="text" name="nisn" placeholder="NISN" required />
+
+      <input
+        type="text"
+        name="berlaku"
+        placeholder="Berlaku Sampai (07 / 2027)"
+        required
+      />
+
+      <label>Foto Siswa</label>
+      <input type="file" name="foto" required />
+
+      <br /><br />
+
+      <button type="submit">Preview Kartu</button>
+    </form>
+  </body>
+</html>
